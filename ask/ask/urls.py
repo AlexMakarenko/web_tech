@@ -12,18 +12,21 @@ Class-based views
     2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
 Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
-"""
-from django.conf.urls import url
-from django.contrib import admin
+    2. Add a URL to urlpatterns: url(r'^blog/', include('blog.urls')) 
+""" 
+
+from django.conf.urls import include, url 
+from django.contrib import admin 
+from qa.views import test
+
+admin.autodiscover() 
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls), ] urlpatterns = patterns('qa.views',
-   url(r'^$', 'test'),
-   url(r'^login/.*$', 'test', name='login'),
-   url(r'^signup/.*', 'test', name='signup'),
-   url(r'^question/(?P<id>[0-9]+)/$', 'test', name='question'),
-   url(r'^ask/.*', 'test', name='ask'),
-   url(r'^popular/.*', 'test', name='popular'),
-   url(r'^new/.*', 'test', name='new'),
-) 
+    url(r'^$', test),
+    url(r'^login/.*$', test),
+    url(r'^signup/.*$', test),
+    url(r'^question/\d+/$', test),
+    url(r'^ask/.*$', test),
+    url(r'^popular/.*$', test),
+    url(r'^new/.*$', test)
+]
